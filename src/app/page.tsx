@@ -30,24 +30,12 @@ const Dashboard = () => {
     document.addEventListener("contextmenu", handleContextMenu);
     window.addEventListener("keydown", handleKeyDown);
 
-    const enterFullscreen = async () => {
-      const element = document.documentElement;
-      if (element.requestFullscreen) {
-        try {
-          await element.requestFullscreen();
-        } catch (error) {
-          console.error("Failed to enter fullscreen mode:", error);
-        }
-      }
-    };
-
-    enterFullscreen();
-
     return () => {
       document.removeEventListener("contextmenu", handleContextMenu);
       window.removeEventListener("keydown", handleKeyDown);
     };
   }, []);
+
   return (
     <>
       <Navbar curr={"home"} />
