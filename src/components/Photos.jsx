@@ -1,43 +1,44 @@
 import { Float, useTexture } from "@react-three/drei";
 import { useFrame } from "@react-three/fiber";
 import { useAtom } from "jotai";
-import React, { useEffect, useMemo, useRef, useState } from "react";
+import React, { useMemo, useRef } from "react";
 import * as Three from "three";
 import { imagesList } from "./utilities/Store";
 
 const Photos = () => {
-  const [images, setImages] = useAtom(imagesList);
-
+  const [images] = useAtom(imagesList);
   const imagesRef = useRef(null);
 
-  const textures = [];
-  images.map((item) => {
-    let texture = useTexture(item.url);
-    texture.flipY = true;
-    textures.push({ texture, width: item.width, height: item.height });
-  });
+  const urls = images.map((image) => image.url);
+
+  const texturesArray = useTexture(urls);
+
+  const textures = images.map((image, index) => ({
+    texture: texturesArray[index],
+    width: image.width,
+    height: image.height,
+  }));
 
   const positions = useMemo(() => {
-    const position = [];
+    return images.map((_, i) => {
+      return {
+        pos: [
+          (Math.random() - 0.5) * 100,
+          Math.random() * 0.4 + 1.5,
+          (Math.random() - 0.5) * 100,
+        ],
+        textureData: textures[i],
+      };
+    });
+  }, [images, textures]);
 
-    for (let i = 0; i < images.length; i++) {
-      let tempArray = [];
-      tempArray.push((Math.random() - 0.5) * 100);
-      tempArray.push(Math.random() * 0.4 + 1.5);
-      tempArray.push((Math.random() - 0.5) * 100);
-      position.push({ pos: tempArray, textureData: textures[i] });
-    }
-
-    return position;
-  }, []);
-
-  useFrame((info, delta) => {
+  // Rotate the images group
+  useFrame((_, delta) => {
     if (imagesRef.current) {
       imagesRef.current.rotation.y += delta * 0.01;
     }
   });
 
-  // texture.flipY = false;
   return (
     <group ref={imagesRef}>
       {positions.map((item, index) => (
