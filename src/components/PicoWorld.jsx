@@ -26,7 +26,7 @@ const PicoWorld = () => {
             far: 500,
           }}
         >
-          <OrbitControls />
+          {/* <OrbitControls /> */}
           <color attach="background" args={["#222222"]} />
           <Experience />
           <Leva hidden />
