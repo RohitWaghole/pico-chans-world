@@ -68,13 +68,13 @@ export const CharacterController = () => {
     // document.addEventListener("mousedown", onMouseDown);
     // document.addEventListener("mouseup", onMouseUp);
     // touch
-    // document.addEventListener("touchstart", onMouseDown);
-    // document.addEventListener("touchend", onMouseUp);
+    document.addEventListener("touchstart", onMouseDown);
+    document.addEventListener("touchend", onMouseUp);
     return () => {
       // document.removeEventListener("mousedown", onMouseDown);
       // document.removeEventListener("mouseup", onMouseUp);
-      // document.removeEventListener("touchstart", onMouseDown);
-      // document.removeEventListener("touchend", onMouseUp);
+      document.removeEventListener("touchstart", onMouseDown);
+      document.removeEventListener("touchend", onMouseUp);
     };
   }, []);
 
