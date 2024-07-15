@@ -27,12 +27,14 @@ const Home = () => {
   return (
     <div className="home-background flex w-[100vw] h-[100vh] flex-col justify-center items-center gap-10">
       <div className="typewriter">
-        <h1>Welcome to PICO Chan&apos;s World</h1>
+        <h1 className="sm:text-[40px] text-[20px]">
+          Welcome to PICO Chan&apos;s World
+        </h1>
       </div>
       <div className="flex flex-col justify-center items-center gap-4">
         <label
           htmlFor="images"
-          className="border-4 flex justify-center items-center w-[60vw] h-[20vh] border-dashed border-gray-400 text-[#E4C547] text-8xl cursor-pointer images-label"
+          className="border-4 flex justify-center items-center w-[90vw] h-[20vh] border-dashed border-gray-400 text-[#E4C547] sm:text-4xl text-[30px] cursor-pointer images-label"
         >
           click to upload images
         </label>

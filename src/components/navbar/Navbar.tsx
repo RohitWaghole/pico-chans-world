@@ -5,7 +5,7 @@ import React from "react";
 const Navbar = ({ curr }: { curr: string }) => {
   return (
     <div
-      className="absolute w-full  text-white p-3 flex justify-between items-center "
+      className="absolute w-full  text-white p-3 flex justify-between items-center gap-2 "
       style={{
         zIndex: 100000,
       }}
